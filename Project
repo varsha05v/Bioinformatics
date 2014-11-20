@@ -37,12 +37,12 @@
 
 	<body>
 		<!p>Make sure to pass the app_id and app_key as parameters! For example, with
-		<a href="Vitamins.html?app_id=91f5d4d0&app_key=7dc50f65a3f46da7972e537917aefd3f"> Vitamins.html?app_id=91f5d4d0&amp;app_key=7dc50f65a3f46da7972e537917aefd3f</a>.</p>
+		<a href="NSAIDS.html?app_id=91f5d4d0&app_key=7dc50f65a3f46da7972e537917aefd3f"> NSAIDS.html?app_id=91f5d4d0&amp;app_key=7dc50f65a3f46da7972e537917aefd3f</a>.</p>
 		
 
 		<!-- https://www.udemy.com/blog/search-box-css/ for customizing the following search bar -->
 		<div id="search">
-			<form action="Vitamins.html?app_id=91f5d4d0&app_key=7dc50f65a3f46da7972e537917aefd3f">
+			<form action="NSAIDS.html?app_id=91f5d4d0&app_key=7dc50f65a3f46da7972e537917aefd3f">
 				<input type="text" placeholder="Compound URI..." required />
 				<input type="submit" value="Search"/>
 			</form>
@@ -59,8 +59,8 @@
 		<script type="text/javascript">
 			// document.getElementById("appID").innerHTML = params["app_id"];
 			// document.getElementById("appKey").innerHTML = params["app_key"];
-			var searcher = new Openphacts.ConceptWikiSearch("https://beta.openphacts.org/1.3", params["app_id"], params["app_key"]);  
-			
+			// var searcher = new Openphacts.ConceptWikiSearch("https://beta.openphacts.org/1.3", params["app_id"], params["app_key"]);  
+			var compsearch = new Openphacts.CompoundSearch("https://beta.openphacts.org/1.4", params["app_id"], params["app_key"]);
 			var callback = function(success, status, response){
 				document.getElementById("json").innerHTML = JSON.stringify(response);
 				html = "<table>";
@@ -76,10 +76,8 @@
 				html += "</table>";
 				document.getElementById("table").innerHTML = html;
 			};
-			searcher.byTag('Alcohol', '10', '4', '07a84994-e464-4bbf-812a-a4b96fa3d197', callback);
-			
-			var compsearch = new Openphacts.CompoundSearch("https://beta.openphacts.org/1.4", params["app_id"], params["app_key"]);
-			compsearch.compoundPharmacology('http://www.conceptwiki.org/concept/7ff27070-ef23-497c-8545-44b4b6981c2f', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1', 'all', null, callback);
+			//searcher.byTag('Alcohol', '10', '4', '07a84994-e464-4bbf-812a-a4b96fa3d197', callback);
+			compsearch.compoundPharmacology('http://www.conceptwiki.org/concept/7ff27070-ef23-497c-8545-44b4b6981c2f', null, 'Homo sapiens', 'IC50', null, null, null, null, null, null, null, null, 5, null, null, null, 'single_protein', '1', 'all', null, null, callback);
 			
 		</script>			
 			
